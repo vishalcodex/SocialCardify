@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813753024793",
+    "project_id": "socialcardify",
+    "storage_bucket": "socialcardify.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813753024793:android:73657d0b76ae6690020588",
+        "android_client_info": {
+          "package_name": "com.codex.socialcardify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfjoABvIXBQsJpsIrjB8PAVazAloF7Ahc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
