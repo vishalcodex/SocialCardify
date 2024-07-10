@@ -33,7 +33,7 @@ class SelfEmployedRepository {
 
   Future<ApiResponse> savePersonalDetails(PersonalDetails data) async {
     var body = dio.FormData.fromMap(data.toJson());
-    if (data.photo != null && !data.photo!.contains("http")) {
+    if (data.photo != null && !data.photo!.contains("images")) {
       body.fields.removeWhere((element) => element.key == "photo");
       body.files.add(
         MapEntry(

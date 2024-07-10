@@ -281,7 +281,7 @@ class LoginScreen extends GetView<AuthController> {
                             GestureDetector(
                               onTap: () {
                                 controller.errorMessage.value = "";
-                                Get.toNamed(Routes.AUTH);
+                                Get.toNamed(Routes.REGISTER);
                               },
                               child: const Text(
                                 'Create',

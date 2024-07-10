@@ -134,25 +134,24 @@ class MyFormField extends StatelessWidget {
                             textColor: ColorPallete.primary,
                             hintColor: ColorPallete.grey,
                             onChanged: onChanged,
-                            validator: required ?? false
-                                ? keyboard == TextInputType.emailAddress
+                            validator: keyboard == TextInputType.emailAddress
+                                ? (value) {
+                                    return getEmailValidator(fieldName, value);
+                                  }
+                                : keyboard == TextInputType.phone
                                     ? (value) {
-                                        return getEmailValidator(
+                                        return getPhoneNumberValidator(
                                             fieldName, value);
                                       }
-                                    : keyboard == TextInputType.phone
-                                        ? (value) {
-                                            return getPhoneNumberValidator(
-                                                fieldName, value);
-                                          }
-                                        : validator ??
+                                    : required ?? false
+                                        ? validator ??
                                             (value) {
                                               return value == null ||
                                                       value.isEmpty
                                                   ? "$fieldName ${translations.isRequired.toString().tr}"
                                                   : null;
                                             }
-                                : null,
+                                        : null,
                           ),
                         ),
             ),

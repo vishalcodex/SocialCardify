@@ -22,7 +22,7 @@ class GalleryImage {
     id = json['id'];
     userId = json['user_id'];
     templateId = json['template_id'];
-    image = Urls.getImageUrl(json['image']);
+    image = json['image'].toString().replaceAll(Urls.getImageUrl(""), "");
     name = json['name'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

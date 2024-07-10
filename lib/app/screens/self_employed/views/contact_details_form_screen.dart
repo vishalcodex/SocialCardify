@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:social_cardify/app/models/whatsapp_model.dart';
 import '../../../components/ui/my_list_view.dart';
 import '../controllers/self_employed_controller.dart';
 
@@ -123,8 +124,11 @@ class ContactDetailsFormScreen extends GetView<SelfEmployedController> {
                               type: InputType.TEXT,
                               keyboard: TextInputType.phone,
                               onChanged: (value) {
-                                controller.contactUsDetails.value.whatsappNumber
-                                    ?.whatsappNumber = value;
+                                controller
+                                        .contactUsDetails.value.whatsappNumber =
+                                    WhatsAppDetails(
+                                        templateId: controller.template.id,
+                                        whatsappNumber: value);
                               },
                               required: true,
                             ),

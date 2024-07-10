@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:social_cardify/app/models/product_model.dart';
 import '../../../components/ui/image_input.dart';
 import '../../../components/ui/my_list_view.dart';
+import '../../../providers/api_endpoints.dart';
 import '../controllers/business_up_controller.dart';
 
 import '../../../../common/color_pallete.dart';
@@ -154,7 +155,8 @@ class BusinessProductFormScreen extends GetView<BusinessController> {
                                                   errorBuilder: (context, error,
                                                       stackTrace) {
                                                     return Image.network(
-                                                      product.image!,
+                                                      Urls.getImageUrl(
+                                                          product.image!),
                                                       fit: BoxFit.cover,
                                                       errorBuilder: (context,
                                                           error, stackTrace) {

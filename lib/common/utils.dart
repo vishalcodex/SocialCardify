@@ -86,3 +86,16 @@ String getDateTime(DateTime date) {
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
   return formatter.format(date);
 }
+
+bool compareVersion(
+    {required String appVersion, required String latestVersion}) {
+  int v1Number = getExtendedVersionNumber(appVersion);
+  int v2Number = getExtendedVersionNumber(latestVersion);
+  return (v1Number < v2Number);
+}
+
+int getExtendedVersionNumber(String version) {
+  List versionCells = version.split('.');
+  versionCells = versionCells.map((i) => int.parse(i)).toList();
+  return versionCells[0] * 100000 + versionCells[1] * 1000 + versionCells[2];
+}

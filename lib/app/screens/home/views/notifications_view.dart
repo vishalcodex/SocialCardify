@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../components/ui/my_list_view.dart';
 import '../../../components/ui/rounded_container.dart';
 import '../../../components/ui/text_view.dart';
+import '../../../providers/api_endpoints.dart';
 import '../controllers/home_controller.dart';
 
 // ignore: must_be_immutable
@@ -84,7 +85,7 @@ class NotificationsScreen extends GetView<HomeController> {
                                                 4,
                                             clip: Clip.antiAliasWithSaveLayer,
                                             child: Image.network(
-                                              element.image ?? "",
+                                              Urls.getImageUrl(element.image),
                                               fit: BoxFit.fill,
                                               errorBuilder:
                                                   (context, error, stackTrace) {

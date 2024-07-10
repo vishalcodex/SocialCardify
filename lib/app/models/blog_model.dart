@@ -13,7 +13,7 @@ class Blog {
   Blog.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    image = Urls.getImageUrl(json['image']);
+    image = json['image'].toString().replaceAll(Urls.getImageUrl(""), "");
     description = json['description'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

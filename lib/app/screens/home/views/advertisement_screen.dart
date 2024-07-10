@@ -6,6 +6,7 @@ import '../../../components/ui/my_list_view.dart';
 import '../../../components/ui/rounded_container.dart';
 import '../../../components/ui/text_view.dart';
 import '../../../models/ads_model.dart';
+import '../../../providers/api_endpoints.dart';
 
 class AdvertisementScreen extends StatelessWidget {
   const AdvertisementScreen({
@@ -48,7 +49,7 @@ class AdvertisementScreen extends StatelessWidget {
                           width: double.infinity,
                           clip: Clip.antiAliasWithSaveLayer,
                           child: Image.network(
-                            ad.image.toString(),
+                            Urls.getImageUrl(ad.image),
                             fit: BoxFit.fill,
                           ),
                         ),

@@ -78,7 +78,7 @@ class CashfreePG {
             var oid = value.data["order_id"];
             var spi = value.data["payment_session_id"];
             var session = CFSessionBuilder()
-                .setEnvironment(CFEnvironment.SANDBOX)
+                .setEnvironment(CFEnvironment.PRODUCTION)
                 .setOrderId(oid)
                 .setPaymentSessionId(spi)
                 .build();

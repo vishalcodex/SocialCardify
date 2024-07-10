@@ -125,6 +125,7 @@ class AuthController extends GetxController {
         creds["email"] != "" &&
         creds["number"] != null &&
         creds["number"] != "") {
+      isLoading.value = true;
       await _userRepository.forgotPassword({
         "email": creds["email"],
         "phone_number": creds["number"],
@@ -135,6 +136,9 @@ class AuthController extends GetxController {
             duration: const Duration(seconds: 3),
             message: value.data["message"],
           ));
+          Future.delayed(const Duration(seconds: 5), () {
+            Get.back();
+          });
         } else {
           Get.showSnackbar(GetSnackBar(
             duration: const Duration(seconds: 3),

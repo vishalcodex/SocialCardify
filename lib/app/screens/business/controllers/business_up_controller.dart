@@ -12,14 +12,17 @@ import '../../../models/slider_model.dart';
 import '../../../models/testimonial_model.dart';
 import '../../../models/theme_template_model.dart';
 import '../../../repositories/business_repository.dart';
+import '../../../repositories/payment_repository.dart';
 import '../../../routes/app_routes.dart';
 import '../../../../../../../common/transalations/translation_keys.dart'
     as translations;
 
 class BusinessController extends GetxController {
   late BusinessRepository _businessRepository;
+  late PaymentRepository _paymentRepository;
   BusinessController() {
     _businessRepository = BusinessRepository();
+    _paymentRepository = PaymentRepository();
   }
 
   @override
@@ -63,200 +66,201 @@ class BusinessController extends GetxController {
 
   GlobalKey<FormState> businessDetailsFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> businessSlidersFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> businessCategoryFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> businessTestimonialFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> businessAboutUsFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> businessProductFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> businessServicesFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> businessGalleryFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> businessContactUsFormKey = GlobalKey<FormState>();
 
   RxBool isLoading = false.obs;
   void validateAndContinue(context, int stage) async {
     // selectedTile.value = 5;
-    // GlobalKey<FormState> key = stage == 1
-    //     ? businessDetailsFormKey
-    //     : selectedTile.value == 2
-    //         ? businessCategoryFormKey
-    //         : selectedTile.value == 3
-    //             ? businessTestimonialFormKey
-    //             : businessContactUsFormKey;
-    // if (key.currentState!.validate()) {
-    var result = false;
-    isLoading.value = true;
-    switch (stage) {
-      case 1:
-        businessDetails.value.templateId = template.id;
-        result = await _businessRepository
-            .saveBusinessDetails(businessDetails.value)
-            .then((value) {
-          if (value.status == Status.ERROR) {
-            Get.showSnackbar(GetSnackBar(
-              backgroundColor: ColorPallete.red,
-              duration: const Duration(seconds: 2),
-              message: value.message,
-            ));
-          }
-          return value.status == Status.COMPLETED;
-        });
+    GlobalKey<FormState>? key = stage == 2 ? businessSlidersFormKey : null;
+    if (key?.currentState!.validate() ?? true) {
+      var result = false;
+      isLoading.value = true;
+      switch (stage) {
+        case 1:
+          businessDetails.value.templateId = template.id;
+          result = await _businessRepository
+              .saveBusinessDetails(businessDetails.value)
+              .then((value) {
+            if (value.status == Status.ERROR) {
+              Get.showSnackbar(GetSnackBar(
+                backgroundColor: ColorPallete.red,
+                duration: const Duration(seconds: 2),
+                message: value.message,
+              ));
+            }
+            return value.status == Status.COMPLETED;
+          });
 
-        if (result) {
-          fetchSliderDetails();
-          Get.toNamed(Routes.BUSINESS_SLIDERS_FORM);
-        }
-        break;
-      case 2:
-        result = await _businessRepository
-            .saveSliders(sliders
-                .where((element) => (element.title?.isNotEmpty ?? false))
-                .toList())
-            .then((value) {
-          if (value.status == Status.ERROR) {
-            Get.showSnackbar(GetSnackBar(
-              backgroundColor: ColorPallete.red,
-              duration: const Duration(seconds: 2),
-              message: value.message,
-            ));
+          if (result) {
+            fetchSliderDetails();
+            Get.toNamed(Routes.BUSINESS_SLIDERS_FORM);
           }
-          return value.status == Status.COMPLETED;
-        });
-        if (result) {
-          fetchAboutUsDetails();
-          Get.toNamed(Routes.BUSINESS_ABOUT_US_FORM);
-        }
-        break;
-      case 3:
-        aboutUsDetails.value.templateId = template.id;
-        result = await _businessRepository
-            .saveAboutUsDetails(aboutUsDetails.value)
-            .then((value) {
-          if (value.status == Status.ERROR) {
-            Get.showSnackbar(GetSnackBar(
-              backgroundColor: ColorPallete.red,
-              duration: const Duration(seconds: 2),
-              message: value.message,
-            ));
+          break;
+        case 2:
+          result = await _businessRepository
+              .saveSliders(sliders
+                  .where((element) => (element.title?.isNotEmpty ?? false))
+                  .toList())
+              .then((value) {
+            if (value.status == Status.ERROR) {
+              Get.showSnackbar(GetSnackBar(
+                backgroundColor: ColorPallete.red,
+                duration: const Duration(seconds: 2),
+                message: value.message,
+              ));
+            }
+            return value.status == Status.COMPLETED;
+          });
+          if (result) {
+            fetchAboutUsDetails();
+            Get.toNamed(Routes.BUSINESS_ABOUT_US_FORM);
           }
-          return value.status == Status.COMPLETED;
-        });
-        if (result) {
-          if ([5, 3].contains(template.id)) {
-            fetchProducts();
-            Get.toNamed(Routes.BUSINESS_PRODUCT_FORM);
-          } else {
-            fetchServices();
-            Get.toNamed(Routes.BUSINESS_SERVICE_FORM);
+          break;
+        case 3:
+          aboutUsDetails.value.templateId = template.id;
+          result = await _businessRepository
+              .saveAboutUsDetails(aboutUsDetails.value)
+              .then((value) {
+            if (value.status == Status.ERROR) {
+              Get.showSnackbar(GetSnackBar(
+                backgroundColor: ColorPallete.red,
+                duration: const Duration(seconds: 2),
+                message: value.message,
+              ));
+            }
+            return value.status == Status.COMPLETED;
+          });
+          if (result) {
+            if ([5, 3].contains(template.id)) {
+              fetchProducts();
+              Get.toNamed(Routes.BUSINESS_PRODUCT_FORM);
+            } else {
+              fetchServices();
+              Get.toNamed(Routes.BUSINESS_SERVICE_FORM);
+            }
           }
-        }
-        break;
-      case 4:
-        result = await _businessRepository
-            .saveProducts(products
-                .where((element) =>
-                    (element.name?.isNotEmpty ?? false) &&
-                    (element.description?.isNotEmpty ?? false))
-                .toList())
-            .then((value) {
-          if (value.status == Status.ERROR) {
-            Get.showSnackbar(GetSnackBar(
-              backgroundColor: ColorPallete.red,
-              duration: const Duration(seconds: 2),
-              message: value.message,
-            ));
+          break;
+        case 4:
+          result = await _businessRepository
+              .saveProducts(products
+                  .where((element) =>
+                      (element.name?.isNotEmpty ?? false) &&
+                      (element.description?.isNotEmpty ?? false))
+                  .toList())
+              .then((value) {
+            if (value.status == Status.ERROR) {
+              Get.showSnackbar(GetSnackBar(
+                backgroundColor: ColorPallete.red,
+                duration: const Duration(seconds: 2),
+                message: value.message,
+              ));
+            }
+            return value.status == Status.COMPLETED;
+          });
+          if (result) {
+            if ([5].contains(template.id)) {
+              fetchServices();
+              Get.toNamed(Routes.BUSINESS_SERVICE_FORM);
+            } else {
+              fetchGallery();
+              Get.toNamed(Routes.BUSINESS_GALLERY_FORM);
+            }
           }
-          return value.status == Status.COMPLETED;
-        });
-        if (result) {
-          if ([5].contains(template.id)) {
-            fetchServices();
-            Get.toNamed(Routes.BUSINESS_SERVICE_FORM);
-          } else {
+          break;
+        case 5:
+          result = await _businessRepository
+              .saveServices(services
+                  .where((element) =>
+                      (element.name?.isNotEmpty ?? false) &&
+                      (element.description?.isNotEmpty ?? false))
+                  .toList())
+              .then((value) {
+            if (value.status == Status.ERROR) {
+              Get.showSnackbar(GetSnackBar(
+                backgroundColor: ColorPallete.red,
+                duration: const Duration(seconds: 2),
+                message: value.message,
+              ));
+            }
+            return value.status == Status.COMPLETED;
+          });
+          if (result) {
             fetchGallery();
             Get.toNamed(Routes.BUSINESS_GALLERY_FORM);
           }
-        }
-        break;
-      case 5:
-        result = await _businessRepository
-            .saveServices(services
-                .where((element) =>
-                    (element.name?.isNotEmpty ?? false) &&
-                    (element.description?.isNotEmpty ?? false))
-                .toList())
-            .then((value) {
-          if (value.status == Status.ERROR) {
-            Get.showSnackbar(GetSnackBar(
-              backgroundColor: ColorPallete.red,
-              duration: const Duration(seconds: 2),
-              message: value.message,
-            ));
+          break;
+        case 6:
+          result = await _businessRepository
+              .saveGalleryIamges(galleryImgs
+                  .where((element) => (element.name?.isNotEmpty ?? false))
+                  .toList())
+              .then((value) {
+            if (value.status == Status.ERROR) {
+              Get.showSnackbar(GetSnackBar(
+                backgroundColor: ColorPallete.red,
+                duration: const Duration(seconds: 2),
+                message: value.message,
+              ));
+            }
+            return value.status == Status.COMPLETED;
+          });
+          if (result) {
+            fetchContactDetails();
+            Get.toNamed(Routes.BUSINESS_CONTACT_US_FORM);
           }
-          return value.status == Status.COMPLETED;
-        });
-        if (result) {
-          fetchGallery();
-          Get.toNamed(Routes.BUSINESS_GALLERY_FORM);
-        }
-        break;
-      case 6:
-        result = await _businessRepository
-            .saveGalleryIamges(galleryImgs
-                .where((element) => (element.name?.isNotEmpty ?? false))
-                .toList())
-            .then((value) {
-          if (value.status == Status.ERROR) {
-            Get.showSnackbar(GetSnackBar(
-              backgroundColor: ColorPallete.red,
-              duration: const Duration(seconds: 2),
-              message: value.message,
-            ));
+          break;
+        case 7:
+          contactUsDetails.value.templateId = template.id;
+          result = await _businessRepository
+              .saveContactUsDetails(contactUsDetails.value)
+              .then((value) {
+            if (value.status == Status.ERROR) {
+              Get.showSnackbar(GetSnackBar(
+                backgroundColor: ColorPallete.red,
+                duration: const Duration(seconds: 2),
+                message: value.message,
+              ));
+            }
+            return value.status == Status.COMPLETED;
+          });
+          if (result) {
+            if (await paymentCheck()) {
+              Get.until(
+                  (route) => Get.currentRoute == Routes.BUSINESS_DETAIL_FORM);
+              Get.offAndToNamed(
+                Routes.PAYMENT,
+                arguments: template,
+              );
+            } else {
+              Get.offAllNamed(Routes.HOME);
+            }
           }
-          return value.status == Status.COMPLETED;
-        });
-        if (result) {
-          fetchContactDetails();
-          Get.toNamed(Routes.BUSINESS_CONTACT_US_FORM);
-        }
-        break;
-      case 7:
-        contactUsDetails.value.templateId = template.id;
-        result = await _businessRepository
-            .saveContactUsDetails(contactUsDetails.value)
-            .then((value) {
-          if (value.status == Status.ERROR) {
-            Get.showSnackbar(GetSnackBar(
-              backgroundColor: ColorPallete.red,
-              duration: const Duration(seconds: 2),
-              message: value.message,
-            ));
-          }
-          return value.status == Status.COMPLETED;
-        });
-        if (result) {
-          if ((contactUsDetails.value.id ?? "") == "") {
-            Get.toNamed(Routes.PAYMENT, arguments: template);
-          } else {
-            Get.offAllNamed(Routes.HOME);
-          }
-        }
-        break;
+          break;
 
-      default:
-        result = false;
-    }
+        default:
+          result = false;
+      }
 
-    // result = true;
-    isLoading.value = false;
-    if (result) {
-      Get.showSnackbar(GetSnackBar(
-        backgroundColor: ColorPallete.primary,
-        duration: const Duration(seconds: 2),
-        message: translations.detailsSubmitted.tr,
-      ));
-    } else {
-      Get.showSnackbar(GetSnackBar(
-        backgroundColor: ColorPallete.red,
-        duration: const Duration(seconds: 2),
-        message: translations.errorUpdatingDetails.tr,
-      ));
+      // result = true;
+      isLoading.value = false;
+      if (result) {
+        Get.showSnackbar(GetSnackBar(
+          backgroundColor: ColorPallete.primary,
+          duration: const Duration(seconds: 2),
+          message: translations.detailsSubmitted.tr,
+        ));
+      } else {
+        Get.showSnackbar(GetSnackBar(
+          backgroundColor: ColorPallete.red,
+          duration: const Duration(seconds: 2),
+          message: translations.errorUpdatingDetails.tr,
+        ));
+      }
     }
-    // }
   }
 
   RxList<Slider> sliders = <Slider>[].obs;
@@ -341,6 +345,12 @@ class BusinessController extends GetxController {
         contactUsDetails.value = value.data;
         contactUsDetails.refresh();
       }
+    });
+  }
+
+  Future<bool> paymentCheck() async {
+    return _paymentRepository.fetchPaymentReport(template).then((value) {
+      return !(value.status == Status.COMPLETED);
     });
   }
 }

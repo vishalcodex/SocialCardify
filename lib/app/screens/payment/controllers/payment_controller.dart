@@ -31,24 +31,8 @@ class PaymentController extends GetxController {
 
   void payNow() {
     if (payWith.value) {
+      // goToWebSiteUrl();
       paymentGateway();
-      // RazorpayPG.getInstance.razorpayPayment(
-      //   generateRandomString(5),
-      //   "8459510732",
-      //   double.parse(template.cost ?? "100"),
-      //   handlePaymentSuccess: (response) {
-      //     goToWebSiteUrl();
-      //   },
-      //   handlePaymentError: (faliure) {
-      //     Get.showSnackbar(
-      //       GetSnackBar(
-      //         backgroundColor: ColorPallete.red,
-      //         duration: const Duration(seconds: 5),
-      //         message: faliure.message!,
-      //       ),
-      //     );
-      //   },
-      // );
     } else {
       Get.showSnackbar(
         const GetSnackBar(
@@ -65,7 +49,7 @@ class PaymentController extends GetxController {
     await CashfreePG().getInstance.makePayment(
           phoneNumber:
               Get.find<AuthService>().user.value.phoneNumber.toString(),
-          amount: template.cost.toString(),
+          amount: (double.parse(template.cost ?? "0.0") * 1.18).toString(),
           onSuccess: (paymentSuccessful) {
             isLoading.value = false;
             if (paymentSuccessful) {

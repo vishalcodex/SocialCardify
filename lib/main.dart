@@ -5,7 +5,7 @@ import '/common/theme.dart';
 import '../app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 // import '../app/services/settings_service.dart';
 // import 'app/providers/api_provider.dart';
 import 'app/providers/api_provider.dart';
@@ -18,7 +18,7 @@ Future initServices() async {
   await GetStorage.init();
   // await Get.putAsync(() => TranslationService().init());
   // await Get.putAsync(() => GlobalService().init());
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   // await Get.putAsync(() => FirebaseProvider().init());
   await Get.putAsync(() => AuthService().init());
   await Get.putAsync(() => ApiProvider().init()).then((value) {

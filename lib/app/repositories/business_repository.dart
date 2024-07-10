@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:social_cardify/app/models/about_us_model.dart';
-import 'package:social_cardify/app/models/business_details_model.dart';
-import 'package:social_cardify/app/models/contact_us_model.dart';
-import 'package:social_cardify/app/models/gallery_img_model.dart';
-import 'package:social_cardify/app/models/testimonial_model.dart';
-import 'package:social_cardify/app/models/theme_template_model.dart';
-import 'package:social_cardify/app/models/whatsapp_model.dart';
+import '../models/about_us_model.dart';
+import '../models/business_details_model.dart';
+import '../models/contact_us_model.dart';
+import '../models/gallery_img_model.dart';
+import '../models/testimonial_model.dart';
+import '../models/theme_template_model.dart';
+import '../models/whatsapp_model.dart';
 
 import '../models/api_response.dart';
 import '../models/product_model.dart';
@@ -35,7 +35,7 @@ class BusinessRepository {
 
   Future<ApiResponse> saveBusinessDetails(BusinessDetails data) async {
     var body = dio.FormData.fromMap(data.toJson());
-    if (data.logo != null && !data.logo!.contains("http")) {
+    if (data.logo != null && !data.logo!.contains("logos")) {
       body.fields.removeWhere((element) => element.key == "logo");
       body.files.add(
         MapEntry(
@@ -79,7 +79,8 @@ class BusinessRepository {
 
   Future<ApiResponse> saveSlider(Slider data) async {
     dio.FormData body = dio.FormData.fromMap(data.toJson());
-    if (data.image != null && !data.image!.contains("http")) {
+
+    if (data.image != null && !data.image!.contains("template_sliders")) {
       body.fields.removeWhere((element) => element.key == "image");
       body.files.add(
         MapEntry(
@@ -167,7 +168,7 @@ class BusinessRepository {
 
   Future<ApiResponse> saveProduct(Product data) async {
     dio.FormData body = dio.FormData.fromMap(data.toJson());
-    if (data.image != null && !data.image!.contains("http")) {
+    if (data.image != null && !data.image!.contains("products")) {
       body.fields.removeWhere((element) => element.key == "image");
       body.files.add(
         MapEntry(
@@ -208,7 +209,7 @@ class BusinessRepository {
 
   Future<ApiResponse> saveService(Service data) async {
     dio.FormData body = dio.FormData.fromMap(data.toJson());
-    if (data.image != null && !data.image!.contains("http")) {
+    if (data.image != null && !data.image!.contains("services")) {
       body.fields.removeWhere((element) => element.key == "image");
       body.files.add(
         MapEntry(
@@ -249,7 +250,7 @@ class BusinessRepository {
 
   Future<ApiResponse> saveGalleryImage(GalleryImage data) async {
     dio.FormData body = dio.FormData.fromMap(data.toJson());
-    if (data.image != null && !data.image!.contains("http")) {
+    if (data.image != null && !data.image!.contains("gallery")) {
       body.fields.removeWhere((element) => element.key == "image");
       body.files.add(
         MapEntry(

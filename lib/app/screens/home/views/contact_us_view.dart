@@ -7,8 +7,6 @@ import 'package:get/get.dart';
 import '../../../components/ui/my_list_view.dart';
 import '../../../components/ui/rounded_container.dart';
 import '../../../components/ui/text_view.dart';
-import '../../../providers/api_endpoints.dart';
-import '../../../services/auth_service.dart';
 import '../controllers/home_controller.dart';
 
 // ignore: must_be_immutable
@@ -51,8 +49,8 @@ class ContactUsView extends GetView<HomeController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 RoundedContainer(
-                                  radius: 150,
-                                  height: 150,
+                                  radius: 100,
+                                  height: 100,
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
                                     child: Image.asset("assets/ui/logo.png"),
@@ -61,41 +59,61 @@ class ContactUsView extends GetView<HomeController> {
                               ],
                             ),
                             SizedBox(
-                              height: 50 * fem,
+                              height: 20 * fem,
                             ),
                             const RoundedContainer(
                               radius: 0,
                               child: TextView(
-                                text: "Social Cardify Self Identify",
-                                color: ColorPallete.primary,
-                                fontSize: 20,
+                                text: "Get In Touch",
+                                color: ColorPallete.secondary,
+                                fontSize: 22,
                                 alignment: TextAlign.center,
+                                weight: FontWeight.bold,
                               ),
                             ),
                             SizedBox(
                               height: 10 * fem,
                             ),
-                            const EntryWidget(
-                              icon: Icon(
-                                Icons.location_on,
-                                color: ColorPallete.secondary,
-                                size: 40,
-                              ),
-                              value: "Address",
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                RoundedContainer(
+                                  radius: 0,
+                                  child: TextView(
+                                    text:
+                                        "If you have any inqueries get in touch with us.\nWe will be happyto help you",
+                                    color: ColorPallete.secondary,
+                                    fontSize: 12,
+                                    weight: FontWeight.w400,
+                                    // alignment: TextAlign.center,
+                                  ),
+                                ),
+                              ],
                             ),
+                            SizedBox(
+                              height: 20 * fem,
+                            ),
+                            // const EntryWidget(
+                            //   icon: Icon(
+                            //     Icons.location_on,
+                            //     color: ColorPallete.secondary,
+                            //     size: 25,
+                            //   ),
+                            //   value: "Address",
+                            // ),
                             const EntryWidget(
                               icon: Icon(
-                                Icons.phone,
+                                Icons.phone_outlined,
                                 color: ColorPallete.secondary,
-                                size: 40,
+                                size: 25,
                               ),
                               value: "+91 7230000408",
                             ),
                             const EntryWidget(
                               icon: Icon(
-                                Icons.mail,
+                                Icons.mail_outline,
                                 color: ColorPallete.secondary,
-                                size: 40,
+                                size: 25,
                               ),
                               value: "contactus@socialcardify.com",
                             ),
@@ -107,6 +125,113 @@ class ContactUsView extends GetView<HomeController> {
                             //   ),
                             //    value: "+91 7230000408",
                             // )
+                            SizedBox(
+                              height: 30 * fem,
+                            ),
+                            const RoundedContainer(
+                              radius: 0,
+                              child: TextView(
+                                text: "Social Media",
+                                color: ColorPallete.secondary,
+                                fontSize: 18,
+                                alignment: TextAlign.center,
+                                weight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10 * fem,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(10.0 * fem),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10 * fem,
+                                  ),
+                                  Center(
+                                      child: Image.asset(
+                                    "assets/ui/fb.png",
+                                    height: 40 * fem,
+                                  )),
+                                  SizedBox(
+                                    width: 15 * fem,
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(5.0 * fem),
+                                      child: const TextView(
+                                        text:
+                                            "Saty Updated, connect, and engage with us on Facebook.",
+                                        color: ColorPallete.secondary,
+                                        fontSize: 12, weight: FontWeight.w400,
+                                        // alignment: TextAlign.center,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(10.0 * fem),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10 * fem,
+                                  ),
+                                  Center(
+                                      child: Image.asset(
+                                    "assets/ui/insta.png",
+                                    height: 40 * fem,
+                                  )),
+                                  SizedBox(
+                                    width: 15 * fem,
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(5.0 * fem),
+                                      child: const TextView(
+                                        text:
+                                            "Explore our visual world and discover beauty ofour brand.",
+                                        color: ColorPallete.secondary,
+                                        fontSize: 12, weight: FontWeight.w400,
+                                        // alignment: TextAlign.center,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(10.0 * fem),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10 * fem,
+                                  ),
+                                  Center(
+                                      child: Image.asset(
+                                    "assets/ui/twt.png",
+                                    height: 40 * fem,
+                                  )),
+                                  SizedBox(
+                                    width: 15 * fem,
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(5.0 * fem),
+                                      child: const TextView(
+                                        text:
+                                            "Follow us for real time updates and lively discussions.",
+                                        color: ColorPallete.secondary,
+                                        fontSize: 12,
+                                        weight: FontWeight.w400,
+                                        // alignment: TextAlign.center,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -132,37 +257,51 @@ class EntryWidget extends StatelessWidget {
     double baseWidth = 360;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10 * fem),
-      child: MyListView(
-        children: [
-          Center(child: icon),
-          InkWell(
-            onLongPress: () async {
-              await Clipboard.setData(ClipboardData(
-                      text:
-                          "${Urls.baseUrl}website/${Get.find<AuthService>().user.value.username}"))
-                  .then((value) {
-                // log("${Urls.baseUrl}website/${Get.find<AuthService>().user.value.username}");
-                Get.showSnackbar(
-                  const GetSnackBar(
-                    backgroundColor: ColorPallete.primary,
-                    duration: Duration(seconds: 3),
-                    message: "Text copied to Clipboard",
-                  ),
-                );
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.all(5.0 * fem),
-              child: TextView(
-                text: value,
-                color: ColorPallete.secondary,
-                fontSize: 16,
-                alignment: TextAlign.center,
+      padding: EdgeInsets.symmetric(vertical: 5 * fem),
+      child: RoundedContainer(
+        radius: 50,
+        borderColor: ColorPallete.grey,
+        child: Padding(
+          padding: EdgeInsets.all(10.0 * fem),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 10 * fem,
               ),
-            ),
-          )
-        ],
+              Center(child: icon),
+              SizedBox(
+                width: 15 * fem,
+              ),
+              Expanded(
+                child: InkWell(
+                  onTap: () async {
+                    await Clipboard.setData(ClipboardData(text: value
+                        // "${Urls.baseUrl}website/${Get.find<AuthService>().user.value.username}",
+                        )).then((p0) {
+                      // log("${Urls.baseUrl}website/${Get.find<AuthService>().user.value.username}");
+                      Get.showSnackbar(
+                        GetSnackBar(
+                          backgroundColor: ColorPallete.primary,
+                          duration: Duration(seconds: 3),
+                          message: "$value copied to Clipboard",
+                        ),
+                      );
+                    });
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0 * fem),
+                    child: TextView(
+                      text: value,
+                      color: ColorPallete.secondary,
+                      fontSize: 14,
+                      // alignment: TextAlign.center,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

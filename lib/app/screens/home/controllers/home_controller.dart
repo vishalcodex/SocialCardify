@@ -7,6 +7,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../../models/ads_model.dart';
 import '../../../models/api_response.dart';
 import '../../../models/blog_model.dart';
+import '../../../models/my_referrals_model.dart';
 import '../../../models/notification_model.dart';
 import '../../../models/setting_model.dart';
 import '../../../models/user_model.dart';
@@ -17,10 +18,10 @@ import '../../../routes/app_routes.dart';
 import '../../../services/auth_service.dart';
 import '../../membership/views/membership_view.dart';
 import '../views/contact_us_view.dart';
-import '../views/faq_view.dart';
 import '../views/home_view.dart';
 import '../../../../../../../common/transalations/translation_keys.dart'
     as translations;
+import '../views/my_referrals_view.dart';
 
 class HomeController extends GetxController {
   Rx<User> user = User().obs;
@@ -64,7 +65,9 @@ class HomeController extends GetxController {
 
     super.onInit();
     setTabIndex.listen((p0) {
-      if (p0 == 1) {}
+      if (p0 == 3) {
+        fetchMyReferrals();
+      }
     });
 
     homeRefresh(refresh: false);
@@ -95,10 +98,10 @@ class HomeController extends GetxController {
       "view": const ContactUsView()
     },
     {
-      "title": "FAQ's",
-      "icon": "assets/ui/setting_icon.png",
+      "title": "Referrals",
+      "icon": "assets/ui/user.png",
       "pos": "3",
-      "view": FAQView()
+      "view": MyReferralsView()
     }
   ];
 
@@ -278,6 +281,18 @@ class HomeController extends GetxController {
     _userRepository.fetchNotifications().then((value) {
       notifications.value = value.data;
       notifications.refresh();
+    });
+  }
+
+  Rx<MyReferral> myReferral = MyReferral().obs;
+  fetchMyReferrals() async {
+    isLoading.value = true;
+    await _userRepository.fetchMyReferrals().then((value) {
+      isLoading.value = false;
+      if (value.status == Status.COMPLETED) {
+        myReferral.value = value.data;
+        myReferral.refresh();
+      }
     });
   }
 }

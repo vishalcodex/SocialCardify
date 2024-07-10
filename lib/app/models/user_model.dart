@@ -8,6 +8,7 @@ class User extends Model {
   String? image;
   String? username;
   String? referralCode;
+  String? referredBy;
   String? token;
 
   User({this.name, this.email, this.image, this.username, this.phoneNumber}) {
@@ -36,7 +37,8 @@ class User extends Model {
     email = stringFromJson(json, "email");
     phoneNumber = stringFromJson(json, "phone_number");
     username = stringFromJson(json, "username");
-    referralCode = stringFromJson(json, "reffered_by");
+    referralCode = stringFromJson(json, "referral_code");
+    referredBy = stringFromJson(json, "reffered_by");
 
     if (json.containsKey("token")) {
       token = stringFromJson(json, "token");
