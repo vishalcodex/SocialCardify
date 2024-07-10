@@ -34,9 +34,24 @@ class CustomDrawer extends GetView<HomeController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // User
-
+              SizedBox(
+                height: 5 * fem,
+              ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  RoundedContainer(
+                    radius: 100,
+                    borderColor: ColorPallete.primary,
+                    child: Padding(
+                      padding: EdgeInsets.all(10 * fem),
+                      child: Image.asset(
+                        "assets/ui/logo.png",
+                        height: 75 * fem,
+                        width: 75 * fem,
+                      ),
+                    ),
+                  ),
                   const Spacer(),
                   InkWell(
                     onTap: () {
@@ -53,13 +68,6 @@ class CustomDrawer extends GetView<HomeController> {
                     ),
                   )
                 ],
-              ),
-              SizedBox(
-                height: 5 * fem,
-              ),
-              Image.asset(
-                "assets/images/profile.png",
-                height: 75 * fem,
               ),
 
               SizedBox(
@@ -103,6 +111,7 @@ class CustomDrawer extends GetView<HomeController> {
                       title: translations.profile.tr,
                       onPressed: () {
                         Get.back();
+                        controller.updateUser();
                         Get.toNamed(Routes.MY_PROFILE);
                       },
                     ),

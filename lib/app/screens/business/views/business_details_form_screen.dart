@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:social_cardify/app/providers/api_endpoints.dart';
 import '../../../components/ui/image_input.dart';
 import '../../../components/ui/my_list_view.dart';
 import '../controllers/business_up_controller.dart';
@@ -87,8 +88,10 @@ class BusinessDetailFormScreen extends GetView<BusinessController> {
                                                 errorBuilder: (context, error,
                                                     stackTrace) {
                                                   return Image.network(
-                                                    controller.businessDetails
-                                                        .value.logo!,
+                                                    Urls.getImageUrl(controller
+                                                        .businessDetails
+                                                        .value
+                                                        .logo!),
                                                     fit: BoxFit.fill,
                                                     errorBuilder: (context,
                                                         error, stackTrace) {

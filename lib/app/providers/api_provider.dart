@@ -122,6 +122,7 @@ class ApiProvider extends GetxService with ApiClient {
             translations.connectionTimeout.tr, Error.TIME_OUT_ERROR);
       }
       if (ex.response != null) {
+        log(ex.response.toString());
         switch (ex.response!.statusCode) {
           case 404:
             return ApiResponse.error(

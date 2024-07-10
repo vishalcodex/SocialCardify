@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../components/ui/image_input.dart';
 import '../../../components/ui/my_list_view.dart';
 import '../../../models/service_model.dart';
+import '../../../providers/api_endpoints.dart';
 import '../controllers/business_up_controller.dart';
 
 import '../../../../common/color_pallete.dart';
@@ -155,7 +156,9 @@ class BusinessServiceFormScreen extends GetView<BusinessController> {
                                                   errorBuilder: (context, error,
                                                       stackTrace) {
                                                     return Image.network(
-                                                      service.image!,
+                                                      Urls.getImageUrl(
+                                                        service.image!,
+                                                      ),
                                                       fit: BoxFit.cover,
                                                       errorBuilder: (context,
                                                           error, stackTrace) {

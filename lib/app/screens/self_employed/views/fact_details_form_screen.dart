@@ -143,7 +143,7 @@ class FactDetailsFormScreen extends GetView<SelfEmployedController> {
                                     EdgeInsets.symmetric(vertical: 15.0 * fem),
                                 child: Center(
                                   child: TextView(
-                                    text: translations.submit.tr,
+                                    text: translations.next.tr,
                                     color: ColorPallete.theme,
                                     fontSize: 16,
                                   ),

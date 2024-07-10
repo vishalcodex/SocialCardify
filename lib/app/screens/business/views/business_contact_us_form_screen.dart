@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../components/ui/my_list_view.dart';
+import '../../../models/whatsapp_model.dart';
 import '../controllers/business_up_controller.dart';
 
 import '../../../../common/color_pallete.dart';
@@ -95,8 +96,11 @@ class BusinessContactUsFormScreen extends GetView<BusinessController> {
                               type: InputType.TEXT,
                               keyboard: TextInputType.phone,
                               onChanged: (value) {
-                                controller.contactUsDetails.value
-                                    .whatsAppNumber!.whatsappNumber = value;
+                                controller
+                                        .contactUsDetails.value.whatsAppNumber =
+                                    WhatsAppDetails(
+                                        templateId: controller.template.id,
+                                        whatsappNumber: value);
                               },
                               required: true,
                             ),

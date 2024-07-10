@@ -156,9 +156,9 @@ class MyProfileScreen extends GetView<HomeController> {
                                   icon: Icons.alternate_email,
                                 ),
                                 // EntryWidget(
-                                //   title: "Membership Id",
-                                //   value: controller.user.value.membregNo!,
-                                //   icon: Icons.card_membership,
+                                //   title: "Referred By",
+                                //   value: controller.user.value.referredBy!,
+                                //   icon: Icons.alternate_email,
                                 // ),
                                 SizedBox(
                                   height: 5 * fem,

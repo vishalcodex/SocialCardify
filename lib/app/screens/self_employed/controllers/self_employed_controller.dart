@@ -10,6 +10,7 @@ import '../../../models/social_links_model.dart';
 import '../../../models/testimonial_model.dart';
 import '../../../models/theme_template_model.dart';
 import '../../../models/work_experience_model.dart';
+import '../../../repositories/payment_repository.dart';
 import '../../../repositories/self_employed_repository.dart';
 import '../../../routes/app_routes.dart';
 import '../../../../../../../common/transalations/translation_keys.dart'
@@ -17,8 +18,10 @@ import '../../../../../../../common/transalations/translation_keys.dart'
 
 class SelfEmployedController extends GetxController {
   late SelfEmployedRepository _selfEmployedRepository;
+  late PaymentRepository _paymentRepository;
   SelfEmployedController() {
     _selfEmployedRepository = SelfEmployedRepository();
+    _paymentRepository = PaymentRepository();
   }
 
   @override
@@ -228,8 +231,13 @@ class SelfEmployedController extends GetxController {
           return value.status == Status.COMPLETED;
         });
         if (result) {
-          if ((contactUsDetails.value.id ?? "") == "") {
-            Get.toNamed(Routes.PAYMENT, arguments: template);
+          if (await paymentCheck()) {
+            Get.until(
+                (route) => Get.currentRoute == Routes.PERSONAL_DETAILS_FORM);
+            Get.offAndToNamed(
+              Routes.PAYMENT,
+              arguments: template,
+            );
           } else {
             Get.offAllNamed(Routes.HOME);
           }
@@ -325,6 +333,12 @@ class SelfEmployedController extends GetxController {
         contactUsDetails.value = value.data;
         contactUsDetails.refresh();
       }
+    });
+  }
+
+  Future<bool> paymentCheck() async {
+    return _paymentRepository.fetchPaymentReport(template).then((value) {
+      return !(value.status == Status.COMPLETED);
     });
   }
 }

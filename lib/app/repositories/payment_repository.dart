@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../models/api_response.dart';
 import '../models/payment_model.dart';
+import '../models/theme_template_model.dart';
 import '../providers/api_provider.dart';
 import 'package:dio/dio.dart' as dio;
 
@@ -10,6 +11,18 @@ class PaymentRepository {
 
   PaymentRepository() {
     apiProvider = Get.find<ApiProvider>();
+  }
+
+  Future<ApiResponse> fetchPaymentReport(Template template) async {
+    return await apiProvider.makeAPICall(
+        "GET", "payment-report/check/${template.id}", {}).then((value) async {
+      if (value.status == Status.COMPLETED) {
+        value.data = true;
+      } else {
+        value.data = false;
+      }
+      return value;
+    });
   }
 
   Future<ApiResponse> makePayment(PaymentReport data) async {

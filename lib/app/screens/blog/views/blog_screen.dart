@@ -4,6 +4,7 @@ import '../../../../common/color_pallete.dart';
 import '../../../components/ui/my_list_view.dart';
 import '../../../components/ui/rounded_container.dart';
 import '../../../components/ui/text_view.dart';
+import '../../../providers/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../home/controllers/home_controller.dart';
 
@@ -98,7 +99,8 @@ class BlogScreen extends GetView<HomeController> {
                                                     clip: Clip
                                                         .antiAliasWithSaveLayer,
                                                     child: Image.network(
-                                                      blog.image!,
+                                                      Urls.getImageUrl(
+                                                          blog.image),
                                                       // height: 75
                                                       width: double.infinity,
                                                       fit: BoxFit.fill,

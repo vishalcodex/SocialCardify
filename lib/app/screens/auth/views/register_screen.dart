@@ -134,7 +134,7 @@ class RegisterScreen extends GetView<AuthController> {
                                             TextFormField(
                                               initialValue: controller
                                                   .user.value.phoneNumber,
-                                              readOnly: true,
+                                              readOnly: false,
                                               cursorColor:
                                                   ColorPallete.secondary,
                                               decoration:
@@ -168,8 +168,8 @@ class RegisterScreen extends GetView<AuthController> {
                                                 return null;
                                               },
                                               onChanged: (value) {
-                                                controller.creds[
-                                                    "mobile_number"] = value;
+                                                controller.user.value
+                                                    .phoneNumber = value;
                                               },
                                             ),
                                             const SizedBox(

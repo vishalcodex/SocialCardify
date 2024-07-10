@@ -127,7 +127,7 @@ class PaymentScreen extends GetView<PaymentController> {
                                         fontSize: 14,
                                       ),
                                       TextView(
-                                        text: "₹${controller.template.cost}",
+                                        text: "₹ ${controller.template.cost}",
                                         color: ColorPallete.grey,
                                         // font: "Inter",
                                         weight: FontWeight.w500,
@@ -143,14 +143,39 @@ class PaymentScreen extends GetView<PaymentController> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       const TextView(
-                                        text: "Total Payabale",
+                                        text: "18% GST",
+                                        color: ColorPallete.grey,
+                                        // font: "Inter",
+                                        weight: FontWeight.w400,
+                                        fontSize: 14,
+                                      ),
+                                      TextView(
+                                        text:
+                                            "₹ ${double.parse(controller.template.cost ?? "0.0") * 0.18}",
+                                        color: ColorPallete.grey,
+                                        // font: "Inter",
+                                        weight: FontWeight.w500,
+                                        fontSize: 16,
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const TextView(
+                                        text: "Total Payable",
                                         color: ColorPallete.secondary,
                                         // font: "Inter",
                                         weight: FontWeight.bold,
                                         fontSize: 16,
                                       ),
                                       TextView(
-                                        text: "₹${controller.template.cost}",
+                                        text:
+                                            "₹ ${double.parse(controller.template.cost ?? "0.0") * 1.18}",
                                         color: ColorPallete.secondary,
                                         // font: "Inter",
                                         weight: FontWeight.w500,

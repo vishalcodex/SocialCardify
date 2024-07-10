@@ -24,7 +24,9 @@ class BusinessDetails {
     id = json['id'];
     userId = json['user_id'];
     templateId = json['template_id'];
-    logo = json['logo'] != null ? Urls.getImageUrl(json['logo']) : json['logo'];
+    logo = json['logo'] != null
+        ? json['logo'].toString().replaceAll(Urls.getImageUrl(""), "")
+        : json['logo'];
     name = json['name'];
     details = json['details'];
     createdAt = json['created_at'];

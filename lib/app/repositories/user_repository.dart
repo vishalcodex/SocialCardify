@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
-import 'package:social_cardify/app/models/notification_model.dart';
 
 import '../models/api_response.dart';
+import '../models/my_referrals_model.dart';
+import '../models/notification_model.dart';
 import '../models/user_model.dart';
 import '../providers/api_provider.dart';
 import 'package:dio/dio.dart' as dio;
@@ -28,7 +29,7 @@ class UserRepository {
   Future<ApiResponse> forgotPassword(var data) async {
     var body = dio.FormData.fromMap(data);
     return await apiProvider
-        .makeAPICall("POST", "forgot_password", body)
+        .makeAPICall("POST", "forget-password", body)
         .then((value) {
       if (value.status == Status.COMPLETED) {
         // User user = User.fromJson(value.data["user"]);
@@ -80,6 +81,20 @@ class UserRepository {
         value.data = (value.data["notifications"] as List)
             .map((e) => MyNotification.fromJson(e))
             .toList();
+      }
+      return value;
+    });
+  }
+
+  Future<ApiResponse> fetchMyReferrals() async {
+    return await apiProvider
+        .makeAPICall("GET", "my-referrals", {}).then((value) {
+      if (value.status == Status.COMPLETED) {
+        MyReferral myReferral = MyReferral.fromJson(value.data);
+        myReferral.referrals = (value.data["data"] as List)
+            .map((e) => Referral.fromJson(e))
+            .toList();
+        value.data = myReferral;
       }
       return value;
     });

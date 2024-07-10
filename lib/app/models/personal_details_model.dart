@@ -51,7 +51,7 @@ class PersonalDetails {
     maritalStatus = json['marital_status'];
     age = json['age'];
     dob = json['dob'];
-    photo = Urls.getImageUrl(json['photo']);
+    photo = json['photo'].toString().replaceAll(Urls.getImageUrl(""), "");
     designation = json['designation'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -71,7 +71,7 @@ class PersonalDetails {
     data['marital_status'] = this.maritalStatus;
     data['age'] = this.age != null
         ? this.age
-        : this.dob == ""
+        : (this.dob ?? "") == ""
             ? ""
             : (DateTime.now()
                         .difference(DateFormat("dd-MM-yyyy").parse(this.dob!))

@@ -11,7 +11,7 @@ class Sliders {
 
   Sliders.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    image = Urls.getImageUrl(json['image']);
+    image = json['image'].toString().replaceAll(Urls.getImageUrl(""), "");
     name = json['name'];
     // image = json['image'];
     // title = json['title'];

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../components/ui/image_input.dart';
 import '../../../components/ui/my_list_view.dart';
+import '../../../providers/api_endpoints.dart';
 import '../controllers/self_employed_controller.dart';
 
 import '../../../components/ui/form_fields.dart';
@@ -88,8 +89,10 @@ class PersonalDetailFormScreen extends GetView<SelfEmployedController> {
                                                 errorBuilder: (context, error,
                                                     stackTrace) {
                                                   return Image.network(
-                                                    controller.personalDetails
-                                                        .value.photo!,
+                                                    Urls.getImageUrl(controller
+                                                        .personalDetails
+                                                        .value
+                                                        .photo!),
                                                     fit: BoxFit.fill,
                                                     errorBuilder: (context,
                                                         error, stackTrace) {

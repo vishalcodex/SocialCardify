@@ -42,7 +42,9 @@ class SliderRepository {
 
   Future<ApiResponse> fetchSettings() async {
     return await apiProvider.makeAPICall("GET", "settings", {}).then((value) {
-      value.data = Setting.fromJson(value.data["setting"]);
+      if (value.status == Status.COMPLETED) {
+        value.data = Setting.fromJson(value.data["setting"]);
+      }
       return value;
     });
   }

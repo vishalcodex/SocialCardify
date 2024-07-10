@@ -10,6 +10,7 @@ import '../../../components/ui/my_list_view.dart';
 import '../../../components/ui/rounded_container.dart';
 import '../../../components/ui/text_view.dart';
 import '../../../components/ui/youtube_screen.dart';
+import '../../../providers/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../controllers/home_controller.dart';
 // import '../../../../../../../common/transalations/translation_keys.dart'
@@ -133,7 +134,7 @@ class HomeView extends GetView<HomeController> {
                                   color: ColorPallete.grey.withOpacity(0.1))
                             ]),
                             child: Image.network(
-                              e.image!,
+                              Urls.getImageUrl(e.image!),
                               fit: BoxFit.fill,
                             ),
                           ),
@@ -503,7 +504,7 @@ class HomeView extends GetView<HomeController> {
                                             child: Stack(
                                               children: [
                                                 Image.network(
-                                                  blog.image ?? "",
+                                                  Urls.getImageUrl(blog.image),
                                                   width: double.infinity,
                                                   height: double.infinity,
                                                   fit: BoxFit.fill,

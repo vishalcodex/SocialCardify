@@ -8,6 +8,7 @@ import '../../../components/ui/text_view.dart';
 import '../../../models/blog_model.dart';
 import '../../../../../../../common/transalations/translation_keys.dart'
     as translations;
+import '../../../providers/api_endpoints.dart';
 
 // ignore: must_be_immutable
 class BlogDetailsScreen extends StatelessWidget {
@@ -70,7 +71,7 @@ class BlogDetailsScreen extends StatelessWidget {
                                 clip: Clip.antiAliasWithSaveLayer,
                                 color: ColorPallete.disableGrey,
                                 child: Image.network(
-                                  blog.image ?? "",
+                                  Urls.getImageUrl(blog.image),
                                   height: double.infinity,
                                   width: double.infinity,
                                   fit: BoxFit.fill,

@@ -182,7 +182,10 @@ class ForgotPasswordScreen extends GetView<AuthController> {
                                               const Spacer(),
                                               InkWell(
                                                 onTap: () {
-                                                  controller.forgotPassword();
+                                                  if (!controller
+                                                      .isLoading.value) {
+                                                    controller.forgotPassword();
+                                                  }
                                                 },
                                                 // inkwell color
                                                 child: RoundedContainer(
@@ -191,30 +194,35 @@ class ForgotPasswordScreen extends GetView<AuthController> {
                                                   child: SizedBox(
                                                     width: 56,
                                                     height: 56,
-                                                    child: controller
-                                                            .isLoading.value
-                                                        ? const Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    10.0),
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              valueColor:
-                                                                  AlwaysStoppedAnimation<
-                                                                          Color>(
-                                                                      ColorPallete
-                                                                          .theme),
-                                                              strokeWidth: 5.0,
-                                                            ),
-                                                          )
-                                                        : const Icon(
-                                                            // Add this
-                                                            Icons.arrow_forward,
-                                                            // Add this
-                                                            color: Colors.white,
+                                                    child: Obx(
+                                                      () => controller
+                                                              .isLoading.value
+                                                          ? const Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(
+                                                                          10.0),
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor: AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                    ColorPallete
+                                                                        .theme),
+                                                                strokeWidth:
+                                                                    5.0,
+                                                              ),
+                                                            )
+                                                          : const Icon(
+                                                              // Add this
+                                                              Icons
+                                                                  .arrow_forward,
+                                                              // Add this
+                                                              color:
+                                                                  Colors.white,
 
-                                                            size: 30,
-                                                          ),
+                                                              size: 30,
+                                                            ),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
