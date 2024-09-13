@@ -220,6 +220,12 @@ class MyReferralsView extends GetView<HomeController> {
                                               message:
                                                   "Insufficient balance for withdrawal !\nMinimum of ₹1,000 earnings necessary for withdrawal.",
                                             ));
+                                          } else {
+                                            controller.withdrawRequest(controller
+                                                    .myReferral
+                                                    .value
+                                                    .totalUnpaidCommission ??
+                                                "0");
                                           }
                                         },
                                         child: RoundedContainer(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
@@ -70,12 +71,12 @@ class BlogDetailsScreen extends StatelessWidget {
                                 height: 175,
                                 clip: Clip.antiAliasWithSaveLayer,
                                 color: ColorPallete.disableGrey,
-                                child: Image.network(
-                                  Urls.getImageUrl(blog.image),
+                                child: CachedNetworkImage(
+                                  imageUrl: Urls.getImageUrl(blog.image),
                                   height: double.infinity,
                                   width: double.infinity,
                                   fit: BoxFit.fill,
-                                  errorBuilder: (context, error, stackTrace) {
+                                  errorWidget: (context, error, stackTrace) {
                                     return RoundedContainer(
                                       radius: 0,
                                       color: ColorPallete.primary,

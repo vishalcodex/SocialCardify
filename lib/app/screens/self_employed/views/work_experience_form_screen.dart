@@ -109,10 +109,9 @@ class WorkExperienceFormScreen extends GetView<SelfEmployedController> {
                                                   horizontal: 10.0 * fem),
                                               child: InkWell(
                                                 onTap: () {
-                                                  controller.workExperiences
-                                                      .removeAt(index);
-                                                  controller.workExperiences
-                                                      .refresh();
+                                                  controller
+                                                      .deleteWorkExperience(
+                                                          experience);
                                                 },
                                                 child: const CircleAvatar(
                                                   backgroundColor:

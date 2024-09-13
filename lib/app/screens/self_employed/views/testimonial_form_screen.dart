@@ -107,9 +107,8 @@ class TestimonialFormScreen extends GetView<SelfEmployedController> {
                                               horizontal: 10.0 * fem),
                                           child: InkWell(
                                             onTap: () {
-                                              controller.testimonials
-                                                  .removeAt(index);
-                                              controller.testimonials.refresh();
+                                              controller.deleteTestimonial(
+                                                  testimonial);
                                             },
                                             child: const CircleAvatar(
                                               backgroundColor: ColorPallete.red,

@@ -111,6 +111,14 @@ class SelfEmployedRepository {
     });
   }
 
+  Future<ApiResponse> deleteWorkExperience(WorkExperience data) async {
+    return await apiProvider.makeAPICall(
+        "DELETE", "work_experience/delete/${data.id}", {}).then((value) {
+      // value.message = value.data["message"];
+      return value;
+    });
+  }
+
   //SKILLS
   Future<ApiResponse> fetchSkills(Template template) async {
     return await apiProvider
@@ -136,6 +144,14 @@ class SelfEmployedRepository {
         .makeAPICall(
             "POST", "skill/${data.id == null ? "store" : "update"}", body)
         .then((value) {
+      // value.message = value.data["message"];
+      return value;
+    });
+  }
+
+  Future<ApiResponse> deleteSkill(Skill data) async {
+    return await apiProvider
+        .makeAPICall("DELETE", "skill/delete/${data.id}", {}).then((value) {
       // value.message = value.data["message"];
       return value;
     });
@@ -173,6 +189,14 @@ class SelfEmployedRepository {
     });
   }
 
+  Future<ApiResponse> deleteProject(Project data) async {
+    return await apiProvider
+        .makeAPICall("DELETE", "project/delete/${data.id}", {}).then((value) {
+      // value.message = value.data["message"];
+      return value;
+    });
+  }
+
   // TESTIMONIALS
   Future<ApiResponse> fetchTestimonials(Template template) async {
     return await apiProvider.makeAPICall(
@@ -200,6 +224,14 @@ class SelfEmployedRepository {
         .makeAPICall(
             "POST", "testimonial/${data.id == null ? "store" : "update"}", body)
         .then((value) {
+      // value.message = value.data["message"];
+      return value;
+    });
+  }
+
+  Future<ApiResponse> deleteTestimonial(Testimonial data) async {
+    return await apiProvider.makeAPICall(
+        "DELETE", "testimonial/delete/${data.id}", {}).then((value) {
       // value.message = value.data["message"];
       return value;
     });

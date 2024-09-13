@@ -107,7 +107,7 @@ class ContactUsView extends GetView<HomeController> {
                                 color: ColorPallete.secondary,
                                 size: 25,
                               ),
-                              value: "+91 7230000408",
+                              value: "+91 8440994409",
                             ),
                             const EntryWidget(
                               icon: Icon(
@@ -123,7 +123,7 @@ class ContactUsView extends GetView<HomeController> {
                             //     color: ColorPallete.secondary,
                             //     size: 40,
                             //   ),
-                            //    value: "+91 7230000408",
+                            //    value: "+91 8440994409",
                             // )
                             SizedBox(
                               height: 30 * fem,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:social_cardify/common/color_pallete.dart';
 import '../../../models/ads_model.dart';
 import '../../../models/api_response.dart';
 import '../../../models/blog_model.dart';
@@ -235,22 +236,27 @@ class HomeController extends GetxController {
     {
       "name": "Free Lancer",
       "description":
-          "Freelance Writer ,Graphic Designer , Software Developer ,Photographer, Consultant (in various fields such as business,finance, marketing, etc.), Small Business Owner, Real Estate Agent Personal Trainer, Artist (Painter, Sculptor, etc.), Web Developer Content Creator (YouTuber, Podcaster, Blogger), Virtual Assistant Online Tutor, Event Planner, Chef or Caterer"
+          "Freelance Writer ,Graphic Designer , Software Developer ,Photographer, Consultant (in various fields such as business,finance, marketing, etc.), Small Business Owner, Real Estate Agent Personal Trainer, Artist (Painter, Sculptor, etc.), Web Developer Content Creator (YouTuber, Podcaster, Blogger), Virtual Assistant Online Tutor, Event Planner, Chef or Caterer",
+      "templates": ["1", "2"]
     },
     {
       "name": "Retailer",
       "description":
-          "grocery retail and vibrant textile and handloom sectors to eco-friendly organic farming enterprises and sustainable product ventures, these businesses contribute significantly to India's economic diversity. Services such as cleaning, catering, floristry, tailoring, and wellness, including yoga studios"
+          "grocery retail and vibrant textile and handloom sectors to eco-friendly organic farming enterprises and sustainable product ventures, these businesses contribute significantly to India's economic diversity. Services such as cleaning, catering, floristry, tailoring, and wellness, including yoga studios",
+      "templates": ["3", "4", "5"]
     },
-    {
-      "name": "Retailer",
-      "description":
-          "grocery retail and vibrant textile and handloom sectors to eco-friendly organic farming enterprises and sustainable product ventures, these businesses contribute significantly to India's economic diversity. Services such as cleaning, catering, floristry, tailoring, and wellness, including yoga studios"
-    }
+    // {
+    //   "name": "Retailer",
+    //   "description":
+    //       "grocery retail and vibrant textile and handloom sectors to eco-friendly organic farming enterprises and sustainable product ventures, these businesses contribute significantly to India's economic diversity. Services such as cleaning, catering, floristry, tailoring, and wellness, including yoga studios"
+    // }
   ].obs;
+
+  RxList<String> templates = <String>[].obs;
 
   void onRoleSelected(Map<String, dynamic> element) {
     // Get.toNamed(Routes.PACKAGES);
+    templates.value = element["templates"];
     Get.toNamed(Routes.TEMPLATES);
   }
 
@@ -292,6 +298,28 @@ class HomeController extends GetxController {
       if (value.status == Status.COMPLETED) {
         myReferral.value = value.data;
         myReferral.refresh();
+      }
+    });
+  }
+
+  void withdrawRequest(String totalUnpaidCommission) async {
+    isLoading.value = true;
+    await _userRepository
+        .withdrawRequest(double.parse(totalUnpaidCommission))
+        .then((value) {
+      isLoading.value = false;
+      if (value.status == Status.COMPLETED) {
+        Get.showSnackbar(const GetSnackBar(
+          backgroundColor: ColorPallete.primary,
+          duration: Duration(seconds: 3),
+          message: "Withdrawal Request Sent !",
+        ));
+      } else {
+        Get.showSnackbar(GetSnackBar(
+          backgroundColor: ColorPallete.primary,
+          duration: const Duration(seconds: 3),
+          message: value.message ?? "Error Requesting Withdraw Request",
+        ));
       }
     });
   }

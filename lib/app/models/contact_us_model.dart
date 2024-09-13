@@ -36,6 +36,7 @@ class ContactUs {
     phoneNumber = json['phone_number'];
     email = json['email'];
     contactNumber = json['contact_number'];
+    contactPerson = json['contact_person'];
     facebook = json['facebook'];
     instagram = json['instagram'];
     createdAt = json['created_at'];

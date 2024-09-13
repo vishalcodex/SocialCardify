@@ -1,5 +1,3 @@
-import '../providers/api_endpoints.dart';
-
 class MyNotification {
   int? id;
   String? title;
@@ -13,7 +11,7 @@ class MyNotification {
   MyNotification.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    image = json["image"] != null ? Urls.getImageUrl(json['image']) : "";
+    image = json["image"] ?? "";
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }

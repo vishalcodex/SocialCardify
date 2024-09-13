@@ -99,6 +99,13 @@ class BusinessRepository {
     });
   }
 
+  Future<ApiResponse> deleteSlider(Slider data) async {
+    return await apiProvider
+        .makeAPICall("DELETE", "slider/delete/${data.id}", {}).then((value) {
+      // value.message = value.data["message"];
+      return value;
+    });
+  }
   // ABOUT US
 
   Future<ApiResponse> fetchAboutUsDetails(Template template) async {
@@ -140,6 +147,14 @@ class BusinessRepository {
         .makeAPICall(
             "POST", "testimonial/${data.id == null ? "store" : "update"}", body)
         .then((value) {
+      // value.message = value.data["message"];
+      return value;
+    });
+  }
+
+  Future<ApiResponse> deleteTestimonial(Testimonial data) async {
+    return await apiProvider.makeAPICall(
+        "DELETE", "testimonial/delete/${data.id}", {}).then((value) {
       // value.message = value.data["message"];
       return value;
     });
@@ -187,6 +202,14 @@ class BusinessRepository {
     });
   }
 
+  Future<ApiResponse> deleteProduct(Product data) async {
+    return await apiProvider
+        .makeAPICall("DELETE", "product/delete/${data.id}", {}).then((value) {
+      // value.message = value.data["message"];
+      return value;
+    });
+  }
+
   //SERVICES
   Future<ApiResponse> fetchServices(Template template) async {
     return await apiProvider
@@ -228,6 +251,14 @@ class BusinessRepository {
     });
   }
 
+  Future<ApiResponse> deleteService(Service data) async {
+    return await apiProvider
+        .makeAPICall("DELETE", "service/delete/${data.id}", {}).then((value) {
+      // value.message = value.data["message"];
+      return value;
+    });
+  }
+
   //GALLERY
   Future<ApiResponse> fetchGalleryIamges(Template template) async {
     return await apiProvider
@@ -264,6 +295,14 @@ class BusinessRepository {
         .makeAPICall(
             "POST", "gallery/${data.id == null ? "store" : "update"}", body)
         .then((value) {
+      // value.message = value.data["message"];
+      return value;
+    });
+  }
+
+  Future<ApiResponse> deleteGalleryImage(GalleryImage data) async {
+    return await apiProvider
+        .makeAPICall("DELETE", "gallery/delete/${data.id}", {}).then((value) {
       // value.message = value.data["message"];
       return value;
     });

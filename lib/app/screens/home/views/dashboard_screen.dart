@@ -92,13 +92,13 @@ class MainScreen extends GetView<HomeController> {
                         () => Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: CircleAvatar(
-                            radius: 10,
+                            radius: 8,
                             backgroundColor: ColorPallete.red,
                             child: TextView(
                               text: "${controller.notifications.length}",
                               color: ColorPallete.theme,
                               weight: FontWeight.bold,
-                              fontSize: 10,
+                              fontSize: 8,
                             ),
                           ),
                         ),

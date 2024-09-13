@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube/youtube_thumbnail.dart';
@@ -133,8 +134,8 @@ class HomeView extends GetView<HomeController> {
                                   offset: Offset(0, 0 * fem),
                                   color: ColorPallete.grey.withOpacity(0.1))
                             ]),
-                            child: Image.network(
-                              Urls.getImageUrl(e.image!),
+                            child: CachedNetworkImage(
+                              imageUrl: Urls.getImageUrl(e.image!),
                               fit: BoxFit.fill,
                             ),
                           ),
@@ -301,8 +302,8 @@ class HomeView extends GetView<HomeController> {
                                     Row(
                                       children: [
                                         Expanded(
-                                          child: Image.network(
-                                            YoutubeThumbnail(
+                                          child: CachedNetworkImage(
+                                            imageUrl: YoutubeThumbnail(
                                               youtubeId: e.url!
                                                   .split("/")
                                                   .last
@@ -310,7 +311,7 @@ class HomeView extends GetView<HomeController> {
                                                   .last,
                                             ).hd(),
                                             fit: BoxFit.fill,
-                                            errorBuilder:
+                                            errorWidget:
                                                 (context, error, stackTrace) {
                                               return const RoundedContainer(
                                                   radius: 0);
@@ -503,12 +504,13 @@ class HomeView extends GetView<HomeController> {
                                                 .withOpacity(0.5),
                                             child: Stack(
                                               children: [
-                                                Image.network(
-                                                  Urls.getImageUrl(blog.image),
+                                                CachedNetworkImage(
+                                                  imageUrl: Urls.getImageUrl(
+                                                      blog.image),
                                                   width: double.infinity,
                                                   height: double.infinity,
                                                   fit: BoxFit.fill,
-                                                  errorBuilder: (context, error,
+                                                  errorWidget: (context, error,
                                                       stackTrace) {
                                                     return RoundedContainer(
                                                       radius: 0,
@@ -586,7 +588,7 @@ class HomeView extends GetView<HomeController> {
               onTap: () {
                 final Uri telLaunchUri = Uri(
                   scheme: 'tel',
-                  path: "+91 7230000408",
+                  path: "+91 8440994409",
                 );
                 launchUrl(telLaunchUri);
               },

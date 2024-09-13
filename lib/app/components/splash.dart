@@ -64,32 +64,66 @@ class _SplashScreenState extends State<SplashScreen> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
 
     return Scaffold(
-      backgroundColor: ColorPallete.theme,
-      body: Container(
-        color: ColorPallete.theme,
-        child: Column(
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40.0 * fem),
-                      child: AnimatedContainer(
-                        height: 250 * fem,
-                        duration: const Duration(seconds: 2),
-                        child: Image.asset(
-                          "assets/ui/logo.png",
-                          fit: BoxFit.fitHeight,
+      backgroundColor: ColorPallete.primary,
+      body: SafeArea(
+        child: Container(
+          color: ColorPallete.theme,
+          child: Column(
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40.0 * fem),
+                        child: AnimatedContainer(
+                          height: 250 * fem,
+                          duration: const Duration(seconds: 2),
+                          child: Image.asset(
+                            "assets/ui/logo.png",
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 40.0 * fem, vertical: 20 * fem),
+                        child: AnimatedContainer(
+                          duration: const Duration(seconds: 2),
+                          child: TextView(
+                            text: "Social Cardify",
+                            color: ColorPallete.primary,
+                            fontSize: 30,
+                            weight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              TextView(
+                text: "Powered by",
+                color: ColorPallete.grey,
+                fontSize: 12,
+                weight: FontWeight.bold,
+                alignment: TextAlign.center,
+              ),
+              TextView(
+                text: "Codex Technologies",
+                color: ColorPallete.grey,
+                fontSize: 14,
+                weight: FontWeight.bold,
+                alignment: TextAlign.center,
+              ),
+              SizedBox(
+                height: 10 * fem,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -235,7 +269,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         onTap: () {
                           if (Platform.isAndroid || Platform.isIOS) {
                             final appId = Platform.isAndroid
-                                ? 'com.codex.socialcardify'
+                                ? 'com.codex.social_cardify'
                                 : 'YOUR_IOS_APP_ID';
                             final url = Uri.parse(
                               Platform.isAndroid

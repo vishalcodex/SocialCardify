@@ -301,6 +301,15 @@ class BusinessController extends GetxController {
     });
   }
 
+  void deleteSlider(Slider slider) async {
+    await _businessRepository.deleteSlider(slider).then((value) {
+      if (value.status == Status.COMPLETED) {
+        sliders.remove(slider);
+        sliders.refresh();
+      }
+    });
+  }
+
   void fetchAboutUsDetails() async {
     await _businessRepository.fetchAboutUsDetails(template).then((value) {
       if (value.status == Status.COMPLETED) {
@@ -321,6 +330,15 @@ class BusinessController extends GetxController {
     });
   }
 
+  void deleteProduct(Product product) async {
+    await _businessRepository.deleteProduct(product).then((value) {
+      if (value.status == Status.COMPLETED) {
+        products.remove(product);
+        products.refresh();
+      }
+    });
+  }
+
   void fetchServices() async {
     await _businessRepository.fetchServices(template).then((value) {
       if (value.status == Status.COMPLETED) {
@@ -330,10 +348,28 @@ class BusinessController extends GetxController {
     });
   }
 
+  void deleteService(Service service) async {
+    await _businessRepository.deleteService(service).then((value) {
+      if (value.status == Status.COMPLETED) {
+        services.remove(service);
+        services.refresh();
+      }
+    });
+  }
+
   void fetchGallery() async {
     await _businessRepository.fetchGalleryIamges(template).then((value) {
       if (value.status == Status.COMPLETED) {
         galleryImgs.value = value.data;
+        galleryImgs.refresh();
+      }
+    });
+  }
+
+  void deleteGalleryImage(GalleryImage galleryImg) async {
+    await _businessRepository.deleteGalleryImage(galleryImg).then((value) {
+      if (value.status == Status.COMPLETED) {
+        galleryImgs.remove(galleryImg);
         galleryImgs.refresh();
       }
     });

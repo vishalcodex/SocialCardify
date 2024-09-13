@@ -107,9 +107,8 @@ class MyProjectsFormScreen extends GetView<SelfEmployedController> {
                                                   horizontal: 10.0 * fem),
                                               child: InkWell(
                                                 onTap: () {
-                                                  controller.projects
-                                                      .removeAt(index);
-                                                  controller.projects.refresh();
+                                                  controller
+                                                      .deleteProject(project);
                                                 },
                                                 child: const CircleAvatar(
                                                   backgroundColor:

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:social_cardify/app/providers/api_endpoints.dart';
@@ -87,13 +88,14 @@ class BusinessDetailFormScreen extends GetView<BusinessController> {
                                                 fit: BoxFit.cover,
                                                 errorBuilder: (context, error,
                                                     stackTrace) {
-                                                  return Image.network(
-                                                    Urls.getImageUrl(controller
-                                                        .businessDetails
-                                                        .value
-                                                        .logo!),
+                                                  return CachedNetworkImage(
+                                                    imageUrl: Urls.getImageUrl(
+                                                        controller
+                                                            .businessDetails
+                                                            .value
+                                                            .logo!),
                                                     fit: BoxFit.fill,
-                                                    errorBuilder: (context,
+                                                    errorWidget: (context,
                                                         error, stackTrace) {
                                                       return const Center(
                                                         child: Icon(Icons
