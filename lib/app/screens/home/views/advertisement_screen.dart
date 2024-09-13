@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,8 +49,8 @@ class AdvertisementScreen extends StatelessWidget {
                           height: 150,
                           width: double.infinity,
                           clip: Clip.antiAliasWithSaveLayer,
-                          child: Image.network(
-                            Urls.getImageUrl(ad.image),
+                          child: CachedNetworkImage(
+                            imageUrl: Urls.getImageUrl(ad.image),
                             fit: BoxFit.fill,
                           ),
                         ),

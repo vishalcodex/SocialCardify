@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:youtube/youtube_thumbnail.dart';
@@ -101,8 +102,9 @@ class VideosScreen extends GetView<HomeController> {
                                                             clip: Clip
                                                                 .antiAliasWithSaveLayer,
                                                             child:
-                                                                Image.network(
-                                                              YoutubeThumbnail(
+                                                                CachedNetworkImage(
+                                                              imageUrl:
+                                                                  YoutubeThumbnail(
                                                                 youtubeId: video
                                                                     .url!
                                                                     .split("/")
@@ -111,7 +113,7 @@ class VideosScreen extends GetView<HomeController> {
                                                                     .last,
                                                               ).hd(),
                                                               fit: BoxFit.fill,
-                                                              errorBuilder:
+                                                              errorWidget:
                                                                   (context,
                                                                       error,
                                                                       stackTrace) {

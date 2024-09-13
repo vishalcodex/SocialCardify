@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../../../common/color_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -84,10 +86,11 @@ class NotificationsScreen extends GetView<HomeController> {
                                                     .height /
                                                 4,
                                             clip: Clip.antiAliasWithSaveLayer,
-                                            child: Image.network(
-                                              Urls.getImageUrl(element.image),
+                                            child: CachedNetworkImage(
+                                              imageUrl: Urls.getImageUrl(
+                                                  element.image),
                                               fit: BoxFit.fill,
-                                              errorBuilder:
+                                              errorWidget:
                                                   (context, error, stackTrace) {
                                                 return RoundedContainer(
                                                   radius: 0,

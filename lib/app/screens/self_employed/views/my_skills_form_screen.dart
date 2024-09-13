@@ -107,9 +107,7 @@ class MySkillsFormScreen extends GetView<SelfEmployedController> {
                                                   horizontal: 10.0 * fem),
                                               child: InkWell(
                                                 onTap: () {
-                                                  controller.skills
-                                                      .removeAt(index);
-                                                  controller.skills.refresh();
+                                                  controller.deleteSkill(skill);
                                                 },
                                                 child: const CircleAvatar(
                                                   backgroundColor:

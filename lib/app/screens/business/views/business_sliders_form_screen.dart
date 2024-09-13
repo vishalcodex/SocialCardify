@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:social_cardify/app/models/slider_model.dart' as slider;
@@ -113,9 +114,8 @@ class BusinessSlidersFormScreen extends GetView<BusinessController> {
                                                   horizontal: 10.0 * fem),
                                               child: InkWell(
                                                 onTap: () {
-                                                  controller.sliders
-                                                      .removeAt(index);
-                                                  controller.sliders.refresh();
+                                                  controller
+                                                      .deleteSlider(sliderItem);
                                                 },
                                                 child: const CircleAvatar(
                                                   backgroundColor:
@@ -158,11 +158,13 @@ class BusinessSlidersFormScreen extends GetView<BusinessController> {
                                                     fit: BoxFit.cover,
                                                     errorBuilder: (context,
                                                         error, stackTrace) {
-                                                      return Image.network(
-                                                        Urls.getImageUrl(
-                                                            sliderItem.image!),
+                                                      return CachedNetworkImage(
+                                                        imageUrl:
+                                                            Urls.getImageUrl(
+                                                                sliderItem
+                                                                    .image!),
                                                         fit: BoxFit.cover,
-                                                        errorBuilder: (context,
+                                                        errorWidget: (context,
                                                             error, stackTrace) {
                                                           return const Icon(
                                                             Icons

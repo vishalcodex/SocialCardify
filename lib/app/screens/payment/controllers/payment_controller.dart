@@ -61,7 +61,7 @@ class PaymentController extends GetxController {
             Get.showSnackbar(
               GetSnackBar(
                 backgroundColor: ColorPallete.red,
-                duration: const Duration(seconds: 5),
+                duration: const Duration(seconds: 3),
                 message: p0.getMessage(),
               ),
             );

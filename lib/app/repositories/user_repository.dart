@@ -99,4 +99,18 @@ class UserRepository {
       return value;
     });
   }
+
+  Future<ApiResponse> withdrawRequest(double amount) async {
+    return await apiProvider.makeAPICall(
+        "POST", "withdrawal-request", {"amount": amount}).then((value) {
+      if (value.status == Status.COMPLETED) {
+        // MyReferral myReferral = MyReferral.fromJson(value.data);
+        // myReferral.referrals = (value.data["data"] as List)
+        //     .map((e) => Referral.fromJson(e))
+        //     .toList();
+        // value.data = myReferral;
+      }
+      return value;
+    });
+  }
 }

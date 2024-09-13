@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../components/ui/image_input.dart';
@@ -110,9 +111,8 @@ class BusinessGalleryFormScreen extends GetView<BusinessController> {
                                               horizontal: 10.0 * fem),
                                           child: InkWell(
                                             onTap: () {
-                                              controller.galleryImgs
-                                                  .removeAt(index);
-                                              controller.galleryImgs.refresh();
+                                              controller
+                                                  .deleteGalleryImage(image);
                                             },
                                             child: const CircleAvatar(
                                               backgroundColor: ColorPallete.red,
@@ -154,11 +154,11 @@ class BusinessGalleryFormScreen extends GetView<BusinessController> {
                                                 fit: BoxFit.cover,
                                                 errorBuilder: (context, error,
                                                     stackTrace) {
-                                                  return Image.network(
-                                                    Urls.getImageUrl(
+                                                  return CachedNetworkImage(
+                                                    imageUrl: Urls.getImageUrl(
                                                         image.image!),
                                                     fit: BoxFit.cover,
-                                                    errorBuilder: (context,
+                                                    errorWidget: (context,
                                                         error, stackTrace) {
                                                       return const Icon(
                                                         Icons.photo_outlined,

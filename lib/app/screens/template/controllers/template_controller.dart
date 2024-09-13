@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:social_cardify/app/screens/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../models/payment_model.dart';
@@ -99,9 +100,15 @@ class TemplateController extends GetxController {
   }
 
   void fetchData() async {
+    isLoading.value = true;
     themes.value = [];
     await _templateRepository.getTemplates().then((value) {
-      themes.value = value.data;
+      isLoading.value = false;
+      themes.value = (value.data as List<Template>)
+          .where((element) => Get.find<HomeController>()
+              .templates
+              .contains(element.id.toString()))
+          .toList();
       themes.refresh();
     });
   }

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:social_cardify/app/models/product_model.dart';
@@ -109,9 +110,8 @@ class BusinessProductFormScreen extends GetView<BusinessController> {
                                                 horizontal: 10.0 * fem),
                                             child: InkWell(
                                               onTap: () {
-                                                controller.products
-                                                    .removeAt(index);
-                                                controller.products.refresh();
+                                                controller
+                                                    .deleteProduct(product);
                                               },
                                               child: const CircleAvatar(
                                                 backgroundColor:
@@ -154,11 +154,12 @@ class BusinessProductFormScreen extends GetView<BusinessController> {
                                                   fit: BoxFit.cover,
                                                   errorBuilder: (context, error,
                                                       stackTrace) {
-                                                    return Image.network(
-                                                      Urls.getImageUrl(
-                                                          product.image!),
+                                                    return CachedNetworkImage(
+                                                      imageUrl:
+                                                          Urls.getImageUrl(
+                                                              product.image!),
                                                       fit: BoxFit.cover,
-                                                      errorBuilder: (context,
+                                                      errorWidget: (context,
                                                           error, stackTrace) {
                                                         return const Icon(
                                                           Icons.photo_outlined,

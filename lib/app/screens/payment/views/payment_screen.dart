@@ -242,6 +242,7 @@ class PaymentScreen extends GetView<PaymentController> {
               child: InkWell(
                 onTap: () {
                   if (!controller.isLoading.value) {
+                    controller.isLoading.value = false;
                     controller.payNow();
                   }
                 },

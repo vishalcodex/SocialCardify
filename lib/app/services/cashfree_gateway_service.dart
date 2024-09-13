@@ -62,6 +62,8 @@ class CashfreePG {
       });
     } on CFException catch (e) {
       onError(CFErrorResponse("401", e.message, "code", "type"), "");
+    } on DioError catch (e) {
+      onError(CFErrorResponse("401", e.message, "code", "type"), "");
     }
   }
 
@@ -84,15 +86,16 @@ class CashfreePG {
                 .build();
             return session;
           } on CFException catch (e) {
-            print(e.message);
+            log(e.message);
+            throw Exception(e.message);
           }
         }
         return null;
       });
     } on DioError catch (ex) {
-      print(ex.message);
+      log(ex.message);
+      rethrow;
     }
-    return null;
   }
 
   final CASHFREE_VERIFY_PAYMENT_URL =

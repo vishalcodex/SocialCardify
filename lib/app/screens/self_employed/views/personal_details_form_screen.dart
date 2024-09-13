@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../components/ui/image_input.dart';
@@ -88,13 +89,14 @@ class PersonalDetailFormScreen extends GetView<SelfEmployedController> {
                                                 fit: BoxFit.cover,
                                                 errorBuilder: (context, error,
                                                     stackTrace) {
-                                                  return Image.network(
-                                                    Urls.getImageUrl(controller
-                                                        .personalDetails
-                                                        .value
-                                                        .photo!),
+                                                  return CachedNetworkImage(
+                                                    imageUrl: Urls.getImageUrl(
+                                                        controller
+                                                            .personalDetails
+                                                            .value
+                                                            .photo!),
                                                     fit: BoxFit.fill,
-                                                    errorBuilder: (context,
+                                                    errorWidget: (context,
                                                         error, stackTrace) {
                                                       return const Center(
                                                         child: Icon(Icons

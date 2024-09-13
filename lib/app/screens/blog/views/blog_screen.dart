@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../common/color_pallete.dart';
@@ -98,13 +99,14 @@ class BlogScreen extends GetView<HomeController> {
                                                     color: ColorPallete.theme,
                                                     clip: Clip
                                                         .antiAliasWithSaveLayer,
-                                                    child: Image.network(
-                                                      Urls.getImageUrl(
-                                                          blog.image),
+                                                    child: CachedNetworkImage(
+                                                      imageUrl:
+                                                          Urls.getImageUrl(
+                                                              blog.image),
                                                       // height: 75
                                                       width: double.infinity,
                                                       fit: BoxFit.fill,
-                                                      errorBuilder: (context,
+                                                      errorWidget: (context,
                                                           error, stackTrace) {
                                                         return RoundedContainer(
                                                           radius: 0,

@@ -300,10 +300,30 @@ class SelfEmployedController extends GetxController {
     });
   }
 
+  void deleteWorkExperience(WorkExperience workExperience) async {
+    await _selfEmployedRepository
+        .deleteWorkExperience(workExperience)
+        .then((value) {
+      if (value.status == Status.COMPLETED) {
+        workExperiences.remove(workExperience);
+        workExperiences.refresh();
+      }
+    });
+  }
+
   void fetchSkills() async {
     await _selfEmployedRepository.fetchSkills(template).then((value) {
       if (value.status == Status.COMPLETED) {
         skills.value = value.data;
+        skills.refresh();
+      }
+    });
+  }
+
+  void deleteSkill(Skill skill) async {
+    await _selfEmployedRepository.deleteSkill(skill).then((value) {
+      if (value.status == Status.COMPLETED) {
+        skills.remove(skill);
         skills.refresh();
       }
     });
@@ -318,10 +338,28 @@ class SelfEmployedController extends GetxController {
     });
   }
 
+  void deleteProject(Project project) async {
+    await _selfEmployedRepository.deleteProject(project).then((value) {
+      if (value.status == Status.COMPLETED) {
+        projects.remove(project);
+        projects.refresh();
+      }
+    });
+  }
+
   void fetchTestimonials() async {
     await _selfEmployedRepository.fetchTestimonials(template).then((value) {
       if (value.status == Status.COMPLETED) {
         testimonials.value = value.data;
+        testimonials.refresh();
+      }
+    });
+  }
+
+  void deleteTestimonial(Testimonial testimonial) async {
+    await _selfEmployedRepository.deleteTestimonial(testimonial).then((value) {
+      if (value.status == Status.COMPLETED) {
+        testimonials.remove(testimonial);
         testimonials.refresh();
       }
     });
